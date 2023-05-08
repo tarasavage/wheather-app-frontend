@@ -1,13 +1,187 @@
-import React from 'react'
-import styles from './MainContent.module.scss'
+import React from "react";
+import styles from "./MainContent.module.scss";
 
-import CurrentForecast from './components/CurrentForecast/CurrentForecast'
+import CurrentForecast from "./components/CurrentForecast/CurrentForecast";
+import InfoBlock from "./components/InfoBlock/InfoBlock";
+
+import visibility from '../../icons/visibility.svg'
 function MainContent() {
   return (
     <div>
-          <CurrentForecast />
+      <CurrentForecast />
+      <InfoBlock
+        title={"Вітер"}
+        icon={
+          <svg
+            width="31"
+            height="34"
+            viewBox="0 0 31 34"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_d_0_1)">
+              <circle
+                cx="15.5"
+                cy="14.5"
+                r="11"
+                stroke="#788FD6"
+                shape-rendering="crispEdges"
+              />
+            </g>
+            <line
+              x1="15.3"
+              y1="3"
+              x2="15.3"
+              y2="6"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              x1="27"
+              y1="15.3"
+              x2="24"
+              y2="15.3"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              x1="22.7879"
+              y1="8.67477"
+              x2="23.6748"
+              y2="7.78786"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              x1="22.6748"
+              y1="22.099"
+              x2="21.7879"
+              y2="21.2121"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              y1="-0.3"
+              x2="1.25427"
+              y2="-0.3"
+              transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 7.8869 8.8869)"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              y1="-0.3"
+              x2="1.25427"
+              y2="-0.3"
+              transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 7 20.8869)"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              x1="7"
+              y1="15.3"
+              x2="5"
+              y2="15.3"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <line
+              x1="15.3"
+              y1="23"
+              x2="15.3"
+              y2="25"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <g filter="url(#filter1_d_0_1)">
+              <path
+                d="M15 18L16.1547 16H13.8453L15 18ZM14.8 10V16.2H15.2V10H14.8Z"
+                fill="#163EBD"
+              />
+            </g>
+            <path
+              d="M14 4C14 4 14.3455 1.72038 15 1.24386C15.4236 0.935488 15.7507 0.902357 16.1667 1.24386C16.7785 1.74616 17 4 17 4"
+              stroke="#788FD6"
+              stroke-width="0.6"
+            />
+            <defs>
+              <filter
+                id="filter0_d_0_1"
+                x="0"
+                y="3"
+                width="31"
+                height="31"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="2" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_0_1"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_0_1"
+                  result="shape"
+                />
+              </filter>
+              <filter
+                id="filter1_d_0_1"
+                x="9.84531"
+                y="10"
+                width="10.3094"
+                height="16"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="2" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_0_1"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_0_1"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        }
+      ></InfoBlock>
+      <InfoBlock title={'Видимість'} data={''} icon={visibility}></InfoBlock>
+
     </div>
-  )
+  );
 }
 
-export default MainContent
+export default MainContent;

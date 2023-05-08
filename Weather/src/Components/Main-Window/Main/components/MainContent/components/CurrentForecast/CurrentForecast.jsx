@@ -11,7 +11,7 @@ function CurrentForecast() {
                <p>Погодинний прогноз погоди на день</p>
           </div>
           <div>
-
+          
           </div>
     </div>
   )
