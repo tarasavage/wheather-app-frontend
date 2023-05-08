@@ -1,13 +1,11 @@
-import { Header } from "./Components/Header";
-import Main from "./Components/Main/Main";
+import { Header } from "./Components/Header"
 
 const MainWindow = () => {
-  return (
-    <div>
-      <Header />
-      <Main />
-    </div>
-  );
-};
 
-export { MainWindow };
+
+    return (
+        <Header/>
+    )
+}
+
+export {MainWindow};
