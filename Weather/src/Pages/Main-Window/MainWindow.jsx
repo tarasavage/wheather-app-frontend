@@ -1,5 +1,5 @@
-import { Header } from "./Header";
-import Main from "./Main/Main";
+import { Header } from "./Components/Header";
+import Main from "./Components/Main/Main";
 
 const MainWindow = () => {
   return (
