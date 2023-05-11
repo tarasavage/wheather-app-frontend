@@ -21,16 +21,16 @@ const Header = () => {
         onChange={onLocationInput}
       />
 
-      <button className={styles.cardsButton}>Карти</button>
+      <button className={styles.cards_button}>Карти</button>
       
-      <button className={styles.vocabularyButton}>Метеословник</button>
+      <button className={styles.vocabulary_button}>Метеословник</button>
 
-    <div className={styles.flexContainer}>
-      <button className={styles.langButton}>UA/ENG</button>
+    <div className={styles.flex_container}>
+      <button className={styles.lang_button}>UA/ENG</button>
       <div className={styles.date}>{date.toLocaleString()}</div>
     </div>
 
-      <button className={styles.profileButton}>Профіль</button>
+      <button className={styles.profile_button}>Профіль</button>
     </div>
   );
 };
