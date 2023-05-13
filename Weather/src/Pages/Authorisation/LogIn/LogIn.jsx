@@ -31,7 +31,7 @@ function LogIn() {
   const divStyle = {
     backgroundImage: 'url(/AuthorisationBg.png)',
     width: '100vw',
-    height: '120vh',
+    height: '100vw',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
