@@ -1,0 +1,14 @@
+.weathercard_wrapper{
+     display: flex;
+     width: 100%;
+     border-top: 2px solid #FFFFFF;
+}
+.weathercard_day{
+     display: flex;
+     flex: 20%;
+}
+.weathercard_content{
+     display: flex;
+     flex: 80%;
+     justify-content: space-between;
+}

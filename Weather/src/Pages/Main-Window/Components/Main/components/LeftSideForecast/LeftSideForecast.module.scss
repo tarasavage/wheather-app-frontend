@@ -1,15 +1,78 @@
-.leftside_wrapper{
-     max-width: 197px;
+.leftside_wrapper {
+  width: 197px;
 }
-.top_title_block{
-     &h3{
-          font-family: 'Montserrat';
-          font-style: normal;
-          font-weight: 300;
-          font-size: 40px;
-          line-height: 49px;
-          color: #000000;
+.top_title_block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .top_title {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 49px;
+    color: #000000;
 
-          text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .current_weather_block {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+
+    img {
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// infoblock
+.wrapper {
+  width: 197px;
+  height: 120px;
+  background: rgba(148, 160, 198, 0.2);
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.title_wrap {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  padding: 0 9px;
+  background: rgba(148, 160, 198, 0.6);
+  border-radius: 20px 20px 0px 0px;
+}
+
+// ten forecast
+
+.ten_days_forecast{
+     display: flex;
+     width: 100%;
+     height: auto;
+     flex-direction: column;
+     background: rgba(148, 160, 198, 0.2);
+     border-radius: 0px 20px 20px 0px;
+}
+.ten_top_block{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 5px;
+     height: 36px;
+
+     img{
+          padding-top: 5px;
      }
+}
+.ten_main_block{
+     display: flex;
+     flex-direction: column;
+     border-bottom: 2px solid #FFFFFF;
+     align-items: stretch;
+     width: 100%;
 }
