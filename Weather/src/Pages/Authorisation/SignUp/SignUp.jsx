@@ -8,8 +8,12 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [isChecked, setIsChecked] = useState(false);
   const [errors, setErrors] = useState({});
 
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -43,11 +47,11 @@ function SignUp() {
   const divStyle = {
     backgroundImage: 'url(/AuthorisationBg.png)',
     width: '100vw',
-    height: '100vh',
+    height: '100vw',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
-    position: 'fixed',
+    position: 'absolute',
   };
 
   return (
@@ -119,6 +123,23 @@ function SignUp() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+        </div>
+        <div
+          style={{
+            marginLeft: '440px',
+            marginTop: '-30px',
+            marginBottom: '20px',
+            fontSize: '20px',
+          }}
+        >
+          <label>
+            <input
+              type='checkbox'
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            />
+            Сповіщення
+          </label>
         </div>
         <div
           style={{
