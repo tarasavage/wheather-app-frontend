@@ -6,7 +6,7 @@ import MainContent from './components/MainContent/MainContent'
 function Main() {
   return (
     <div className={styles.wrapper}>
-      <LeftSideForecast />
+      <LeftSideForecast venue={'Львів'}/>
       <MainContent />
     </div>
   )
