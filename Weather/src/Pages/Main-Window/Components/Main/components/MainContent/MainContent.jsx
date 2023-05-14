@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./MainContent.module.scss";
 
 import CurrentForecast from "./components/CurrentForecast/CurrentForecast";
-import InfoBlock from "./components/InfoBlock/InfoBlock";
+import InfoBlock from "../../ui/InfoBlock/InfoBlock";
 
 import visibility from "../../icons/visibility.svg";
 import wind from "../../icons/wind.svg";
