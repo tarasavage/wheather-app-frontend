@@ -36,6 +36,9 @@ const data = {
   snow_1h: null,
 };
 
+let date = new Date();
+
+
 function LeftSideForecast() {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
@@ -148,7 +151,10 @@ function LeftSideForecast() {
         <div className={styles.title_wrap}>
           <p>{data.temp}</p>
         </div>
-        <div className={styles.content_wrap}></div>
+        <div className={styles.content_wrap}>
+          <p>Відчувається як {data.temp + 1}</p>
+          <p>Без опадів</p>
+        </div>
       </div>
 
       <div className={styles.ten_days_forecast}>
