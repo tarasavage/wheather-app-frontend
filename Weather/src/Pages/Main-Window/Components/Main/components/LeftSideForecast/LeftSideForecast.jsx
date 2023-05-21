@@ -28,7 +28,7 @@ const data = {
   weather_id: 500,
   weather_main: "Rain",
   weather_description: "light rain",
-  weather_icon: currentweather,
+  weather_icon: '01d',
   temp: 15.5,
   feels_like: 14.2,
   visibility: 3000.0,
@@ -142,18 +142,19 @@ function LeftSideForecast() {
       <div className={styles.top_title_block}>
         <h3 className={styles.top_title}>{data.city.name}</h3>
         <div className={styles.current_weather_block}>
-          <img src={data.weather_icon} alt="weacther" />
+          <img src={`${data.weather_icon}.png`} alt="weacther" />
           <p>{`зараз ${currentTime}`}</p>
         </div>
       </div>
 
       <div className={styles.wrapper}>
         <div className={styles.title_wrap}>
-          <p>{data.temp}</p>
+          <p>{`${data.temp}°C`}</p>
         </div>
         <div className={styles.content_wrap}>
-          <p>Відчувається як {data.temp + 1}</p>
-          <p>Без опадів</p>
+          <p>Відчувається як {data.feels_like}°C</p>
+          <p>{data.rain_1h ? 'Можливі опади' : 'Без опадів'}</p>
+          <p>{data.snow_1h ? 'Можливий сніг' : 'Без снігу'}</p>
         </div>
       </div>
 
@@ -167,8 +168,8 @@ function LeftSideForecast() {
             <WeatherCard
               key={card.id}
               day={translateDay(format(card.date, 'EEEE'))}
-              icon={card.weather_icon}
-              temp={card.temperature}
+              icon={`${card.weather_icon}.png`}
+              temp={`${card.temperature}°C`}
             />
           ))}
         </div>
