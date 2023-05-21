@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./MainContent.module.scss";
 
 import CurrentForecast from "./components/CurrentForecast/CurrentForecast";
@@ -55,6 +55,16 @@ const data = {
 
 
 function MainContent() {
+
+  const [response, setResponse] = useState([]);
+
+  useEffect(() => {
+
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(response => response.json())
+    .then(json => setResponse(json))
+
+  }, )
   return (
     <div className={styles.main_content__wrapper}>
       <CurrentForecast />
