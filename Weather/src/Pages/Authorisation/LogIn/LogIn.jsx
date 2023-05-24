@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Authorisation.css';
+import { Link } from 'react-router-dom';
 
 function LogIn() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -31,7 +32,7 @@ function LogIn() {
   const divStyle = {
     backgroundImage: 'url(/AuthorisationBg.png)',
     width: '100vw',
-    height: '120vh',
+    height: '100vw',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     backgroundRepeat: 'no-repeat',
@@ -78,7 +79,7 @@ function LogIn() {
           />
         </div>
         <p className='register-label'>
-          Досі не маєте аккаунту? Хутчіш реєструйтеся!
+          <Link to='/'>Досі не маєте аккаунту? Хутчіш реєструйтеся!</Link>
         </p>
         <div
           style={{

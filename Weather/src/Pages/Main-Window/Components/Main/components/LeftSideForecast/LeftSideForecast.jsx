@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./LeftSideForecast.module.scss";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 import currentweather from "../../../../../../icons/cloudyWithSun.svg";
 import calendar from "../../../../../../icons/calendar.svg";
-import star from '../../../../../../icons/choosen_star.png'
+import star from "../../../../../../icons/choosen_star.png";
 
 import WeatherCard from "../../ui/WeatherCard/WeatherCard";
 import { translateDay } from "../../Helpers/leftForecast.helper";
+import { WeatherContext } from "../../../../../../context";
+import { icons } from "../../../../../../../public/svg/icons";
+
+import { getDayFromDate } from "../../../../../../features/getDay";
 
 const data = {
   id: 1,
@@ -36,11 +40,10 @@ const data = {
   snow_1h: null,
 };
 
-let date = new Date();
-
-
 function LeftSideForecast() {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
+
+  const { dailyForecast } = useContext(WeatherContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,78 +63,20 @@ function LeftSideForecast() {
     return `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
   }
 
-  const weatherData = [
-    {
-      id: 1,
-      date: new Date(2023, 4, 15),
-      temperature: 20,
-      condition: "Sunny",
-      weather_icon: currentweather,
-    },
-    {
-      id: 2,
-      date: new Date(2023, 4, 16),
-      temperature: 18,
-      condition: "Cloudy",
-      weather_icon: currentweather,
-    },
-    {
-      id: 3,
-      date: new Date(2023, 4, 15),
-      temperature: 20,
-      condition: "Sunny",
-      weather_icon: currentweather,
-    },
-    {
-      id: 4,
-      date: new Date(2023, 4, 16),
-      temperature: 18,
-      condition: "Cloudy",
-      weather_icon: currentweather,
-    },
-    {
-      id: 5,
-      date: new Date(2023, 4, 15),
-      temperature: 20,
-      condition: "Sunny",
-      weather_icon: currentweather,
-    },
-    {
-      id: 6,
-      date: new Date(2023, 4, 16),
-      temperature: 18,
-      condition: "Cloudy",
-      weather_icon: currentweather,
-    },
-    {
-      id: 7,
-      date: new Date(2023, 4, 15),
-      temperature: 20,
-      condition: "Sunny",
-      weather_icon: currentweather,
-    },
-    {
-      id: 8,
-      date: new Date(2023, 4, 16),
-      temperature: 18,
-      condition: "Cloudy",
-      weather_icon: currentweather,
-    },
-    {
-      id: 9,
-      date: new Date(2023, 4, 15),
-      temperature: 20,
-      condition: "Sunny",
-      weather_icon: currentweather,
-    },
-    {
-      id: 10,
-      date: new Date(2023, 4, 16),
-      temperature: 18,
-      condition: "Cloudy",
-      weather_icon: currentweather,
-    },
-  ];
+  const weatherData = [];
+
+
+  dailyForecast?.map((day) =>
+    weatherData.push({
+      id: day?.id,
+      temperture: day?.temp_day,
+      day: getDayFromDate(day?.dt),
+      icon: icons.find((icon) => icon?.name == day?.weather_icon)?.url,
+    })
+  );
+
+
+
 
   return (
     <div className={styles.leftside_wrapper}>
@@ -161,15 +106,15 @@ function LeftSideForecast() {
       <div className={styles.ten_days_forecast}>
         <div className={styles.ten_top_block}>
           <img src={calendar} alt="calendar" />
-          <p>10-денний прогноз</p>
+          <p>7-денний прогноз</p>
         </div>
         <div className={styles.ten_main_block}>
           {weatherData.map((card) => (
             <WeatherCard
               key={card.id}
-              day={translateDay(format(card.date, 'EEEE'))}
-              icon={`${card.weather_icon}.png`}
-              temp={`${card.temperature}°C`}
+              day={card.day}
+              icon={card.icon}
+              temp={Math.round(card.temperture)+'°C'}
             />
           ))}
         </div>
