@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MainContent.module.scss";
 
 import CurrentForecast from "./components/CurrentForecast/CurrentForecast";
@@ -13,6 +13,7 @@ import pressure from "../../icons/pressure.svg";
 import sunrise from "../../icons/sunrise.svg";
 import sunset from "../../icons/sunset.svg";
 import { convertTime } from "../../Helpers/time.helper";
+import { fetchData } from "../../Helpers/fetchingData.helper";
 
 const data = {
   id: 1,
@@ -50,21 +51,32 @@ const data = {
 "pop": 0.0,
 "rain" : null,
 "snow": null,
-"city": 2
+// "city": 2
 };
 
 
 function MainContent() {
 
   const [response, setResponse] = useState([]);
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + 1);
 
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then(response => response.json())
-    .then(json => setResponse(json))
+      if (currentDate > nextDay) {
+        console.log('Виконується запит...');
+        setResponse(fetchData('daily', 'Lviv'))
+      }
 
-  }, )
+      setCurrentDate(new Date());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentDate]);
+
+
   return (
     <div className={styles.main_content__wrapper}>
       <CurrentForecast />
