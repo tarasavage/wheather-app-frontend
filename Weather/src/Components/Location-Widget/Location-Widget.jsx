@@ -11,7 +11,7 @@ const LocationWidgetComponent = (
 ) => {
   const {currentForecast} = useContext(WeatherContext);
   const icon = icons.find((icon)=> (icon?.name == currentForecast?.weather_icon))?.url;
-  console.log(icon)
+
   return (
     <div className={styles.location_widget}>
       <div className={styles.header}>

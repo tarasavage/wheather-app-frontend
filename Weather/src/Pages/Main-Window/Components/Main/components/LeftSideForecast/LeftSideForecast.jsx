@@ -11,6 +11,8 @@ import { translateDay } from "../../Helpers/leftForecast.helper";
 import { WeatherContext } from "../../../../../../context";
 import { icons } from "../../../../../../../public/svg/icons";
 
+import { getDayFromDate } from "../../../../../../features/getDay";
+
 const data = {
   id: 1,
   city: {
@@ -63,23 +65,18 @@ function LeftSideForecast() {
 
   const weatherData = [];
 
-  console.log(dailyForecast);
 
   dailyForecast?.map((day) =>
     weatherData.push({
       id: day?.id,
       temperture: day?.temp_day,
-      day: "Mon",
+      day: getDayFromDate(day?.dt),
       icon: icons.find((icon) => icon?.name == day?.weather_icon)?.url,
     })
   );
 
 
-  function getDayName(date = new Date(), locale = 'en-UK') {
-    console.log(date);
-    return date.toLocaleDateString(locale, {weekday: 'long'});
-  }
-
+  
 
   return (
     <div className={styles.leftside_wrapper}>
@@ -108,15 +105,15 @@ function LeftSideForecast() {
       <div className={styles.ten_days_forecast}>
         <div className={styles.ten_top_block}>
           <img src={calendar} alt="calendar" />
-          <p>10-денний прогноз</p>
+          <p>7-денний прогноз</p>
         </div>
         <div className={styles.ten_main_block}>
           {weatherData.map((card) => (
             <WeatherCard
               key={card.id}
-              day={"Пн"}
+              day={card.day}
               icon={card.icon}
-              temp={card.temperture}
+              temp={Math.round(card.temperture)+'°C'}
             />
           ))}
         </div>
