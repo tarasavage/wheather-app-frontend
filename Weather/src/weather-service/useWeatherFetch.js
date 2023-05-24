@@ -8,7 +8,9 @@ export const useWeatherFetch = () => {
 
   const [dailyForecast, setDailyForecast] = useState();
 
-  const fetchCurrentForecast = async () => {
+  const [hourlyForecast, setHourlyForecast] = useState();
+
+  const getCurrentForecast = async () => {
     try {
       const response = await axios(base_url + "/api/forecast/current/");
       setCurrentForecast(response.data);
@@ -19,7 +21,7 @@ export const useWeatherFetch = () => {
     }
   };
 
-  const fetchDailyForecast = async () => {
+  const getDailyForecast = async () => {
     try {
       const response = await axios(base_url + "/api/forecast/daily/");
       setDailyForecast(response.data);
@@ -30,10 +32,22 @@ export const useWeatherFetch = () => {
     }
   };
 
+  const getHourlyForecast = async () => {
+    try {
+      const response = await axios(base_url + "/api/forecast/hourly/");
+      setHourlyForecast(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log("final");
+    }
+  };
+
   useEffect(() => {
-    fetchCurrentForecast();
-    fetchDailyForecast();
+    getCurrentForecast();
+    getDailyForecast();
+    getHourlyForecast();
   }, []);
 
-  return { currentForecast, dailyForecast };
+  return { currentForecast, dailyForecast, hourlyForecast };
 };
