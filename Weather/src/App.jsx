@@ -8,10 +8,10 @@ import { useWeatherFetch } from './weather-service/useWeatherFetch';
 
 function App() {
 
-  const {currentForecast} = useWeatherFetch();
+  const {currentForecast, dailyForecast} = useWeatherFetch();
  
   return (
-    <WeatherContext.Provider value={{currentForecast}}>
+    <WeatherContext.Provider value={{currentForecast,dailyForecast}}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<SignUp />} />
