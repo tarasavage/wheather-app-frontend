@@ -76,7 +76,7 @@ function LeftSideForecast() {
   );
 
 
-  
+
 
   return (
     <div className={styles.leftside_wrapper}>
