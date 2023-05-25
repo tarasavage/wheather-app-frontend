@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import '../Authorisation.css';
 import { Link } from 'react-router-dom';
+const base_url = `https://weather-app-backend-tahn.onrender.com`;
+import axios from 'axios';
 
 function LogIn() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -8,10 +10,7 @@ function LogIn() {
 
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Check for errors
+  const validateForm = () => {
     const newErrors = {};
 
     if (!password) {
@@ -23,9 +22,35 @@ function LogIn() {
     }
 
     if (Object.keys(newErrors).length === 0) {
-      console.log('Form submitted');
+      console.log('Data are correct');
     } else {
       setErrors(newErrors);
+    }
+    return newErrors
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const register = {
+      email: emailOrPhone,
+      password,
+    };
+    // Check for errors
+    if (validateForm()) {
+      try {
+        const response = await axios.post(
+          base_url + '/api/user/token/',
+          register,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log('success', response.status);
+        // localStorage.setItem('responseData', JSON.stringify(response.data.jwt));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -54,9 +79,9 @@ function LogIn() {
         <div>
           <input
             className='full-field'
-            type='text'
+            type='email'
             value={emailOrPhone}
-            placeholder='Email або номер телефону'
+            placeholder='Email'
             onChange={(e) => setEmailOrPhone(e.target.value)}
           />
         </div>

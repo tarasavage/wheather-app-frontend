@@ -3,6 +3,7 @@
     "date-fns": "^2.30.0"
   },
   "devDependencies": {
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "sass": "^1.62.1"
   }
 }
