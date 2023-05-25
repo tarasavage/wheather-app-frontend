@@ -28,19 +28,8 @@ function LeftSideForecast() {
 
   const weatherData = [];
 
-  useEffect(async () => {
-    const fetchData = async (interval, city) => {
-      try {
-        const response = await axios.get(
-          `${base_url}/api/forecast/${interval}/${city}/`
-        );
-        console.log(response);
-        return response;
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    fetchData('current', city)
+  useEffect( () => {
+    fetchData('current', city).then(data => setCurrentData(data))
   }, []);
 
   if (currentData) console.log(currentData);
@@ -61,27 +50,27 @@ function LeftSideForecast() {
         <p>У вибраному</p>
       </div>
       <div className={styles.top_title_block}>
-        <h3 className={styles.top_title}>{"CITY"}</h3>
+        <h3 className={styles.top_title}>{city}</h3>
         <div className={styles.current_weather_block}>
           <img
             src={
-              icons.find((icon) => icon?.name == currentForecast?.weather_icon)
+              icons.find((icon) => icon?.name == currentData?.weather_icon)
                 ?.url
             }
             alt="weather"
           />
-          <p>{`зараз ${currentForecast?.dt?.slice(11, 16)}`}</p>
+          <p>{`зараз ${currentData?.dt?.slice(11, 16)}`}</p>
         </div>
       </div>
 
       <div className={styles.wrapper}>
         <div className={styles.title_wrap}>
-          <p>{`${currentForecast?.temp}°C`}</p>
+          <p>{`${currentData?.temp}°C`}</p>
         </div>
         <div className={styles.content_wrap}>
-          <p>Відчувається як {currentForecast?.feels_like}°C</p>
-          <p>{currentForecast?.rain_1h ? "Можливі опади" : "Без опадів"}</p>
-          <p>{currentForecast?.snow_1h ? "Можливий сніг" : "Без снігу"}</p>
+          <p>Відчувається як {currentData?.feels_like}°C</p>
+          <p>{currentData?.rain_1h ? "Можливі опади" : "Без опадів"}</p>
+          <p>{currentData?.snow_1h ? "Можливий сніг" : "Без снігу"}</p>
         </div>
       </div>
 

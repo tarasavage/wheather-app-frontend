@@ -1,10 +1,14 @@
 // interval: (daily | hourly | current)
+import axios from "axios";
+import { base_url } from "../../../../../weather-service/useWeatherFetch";
+
 export const fetchData = async (interval, city) => {
-     try{
-          const response = await axios.get(`http://127.0.0.1:8000/api/forecast/${interval}/${city}/`);
-          console.log(response)
-          return response;
-     } catch(e){
-          console.error(e)
-     }
-}
+  try {
+    const response = await axios.get(
+      `${base_url}/api/forecast/${interval}/${city}/`
+    );
+    return response.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
