@@ -42,8 +42,11 @@ function SignUp() {
     } else {
       setErrors(newErrors);
     }
+    return newErrors
   };
+  
   const handleSubmit = async (e) => {
+    console.log(!validateForm())
     e.preventDefault();
     const register = {
       email: emailOrPhone,
@@ -54,7 +57,7 @@ function SignUp() {
       notification: isChecked,
     };
     // Check for errors
-    if (validateForm()) {
+if (validateForm()){
       try {
         const response = await axios.post(
           base_url + '/api/user/register/',
@@ -70,7 +73,7 @@ function SignUp() {
       } catch (error) {
         console.log(error);
       }
-    }
+  }
   };
 
   const divStyle = {
