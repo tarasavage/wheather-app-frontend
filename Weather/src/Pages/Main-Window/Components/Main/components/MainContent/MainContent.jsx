@@ -9,6 +9,7 @@ import wind from "../../icons/wind.svg";
 import rain from "../../icons/rain.svg";
 import wet from "../../icons/wet.svg";
 import pressure from "../../icons/pressure.svg";
+import pressureIcon from '../../icons/pressure.png'
 
 import sunrise from "../../icons/sunrise.svg";
 import sunset from "../../icons/sunset.svg";
@@ -35,10 +36,10 @@ function MainContent() {
             присутністю до самого вечора. Без опадів.
           </div>
           <div className={styles.infoblock__wrapper}>
-          <InfoBlock title={"Вітер"} data={`${currentForecast?.wind_speed} м/с`} icon={wind} />
-            <InfoBlock title={"Опади"} data={`${currentForecast?.city} мм`} icon={rain} />
+          <InfoBlock title={"Вітер"} data={`${dailyForecast ? dailyForecast[0].wind_speed : ''} м/с`} icon={wind} />
+            <InfoBlock title={"Опади"} data={`${dailyForecast ? dailyForecast[0].city : ''} мм`} icon={rain} />
             <InfoBlock title={"Видимість"} data={`${currentForecast?.visibility} м`} icon={visibility} />
-            <InfoBlock title={"Вологість"} data={`${currentForecast?.humidity} %`} icon={wet} />
+            <InfoBlock title={"Вологість"} data={`${dailyForecast ? dailyForecast[0].humidity : ''} %`} icon={wet} />
           </div>
         </div>
         <div className={styles.sideBlocks_wrapper}>
@@ -49,7 +50,7 @@ function MainContent() {
                 <p>Схід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-                <p>{convertTime(dailyForecast[0].sunrise)}</p>
+                <p>{dailyForecast && convertTime(dailyForecast[0].sunrise)}</p>
               </div>
             </div>
             <div>
@@ -58,7 +59,7 @@ function MainContent() {
                 <p>Захід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-              <p>{convertTime(dailyForecast[0].sunset)}</p>
+              <p>{dailyForecast && convertTime(dailyForecast[0].sunset)}</p>
               </div>
             </div>
           </div>
@@ -67,7 +68,10 @@ function MainContent() {
               <img src={pressure} alt="pressure" />
               <p>Тиск</p>
             </div>
-            <div className={styles.content_wrap}></div>
+            <div className={styles.content_wrap}>
+              <p>{`${dailyForecast ? dailyForecast[0].pressure : ''} гПа`}</p>
+              <div className={styles.wrap_img}><img src={pressureIcon} alt="pressure" /></div>
+            </div>
           </div>
         </div>
       </div>

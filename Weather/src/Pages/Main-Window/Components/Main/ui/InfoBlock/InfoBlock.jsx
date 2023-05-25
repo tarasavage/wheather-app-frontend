@@ -8,7 +8,9 @@ function InfoBlock({ title, icon, data }) {
         <img src={icon} alt="icon" />
         <p>{title}</p>
       </div>
-      <div className={styles.content_wrap}>{data}</div>
+      <div className={styles.content_wrap}>
+        <p>{data}</p>
+        </div>
     </div>
   );
 }

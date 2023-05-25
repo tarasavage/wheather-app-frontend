@@ -110,10 +110,10 @@ function LeftSideForecast() {
         <div className={styles.ten_main_block}>
           {weatherData.map((card) => (
             <WeatherCard
-              key={card.id}
-              day={card.day}
-              icon={card.icon}
-              temp={Math.round(card.temperture)+'°C'}
+              key={card?.id}
+              day={card?.day}
+              icon={card?.icon}
+              temp={Math.round(card?.temperture)+'°C'}
             />
           ))}
         </div>
