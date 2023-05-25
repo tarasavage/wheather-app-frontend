@@ -43,7 +43,7 @@ const data = {
 function LeftSideForecast() {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
-  const { dailyForecast } = useContext(WeatherContext);
+  const { dailyForecast, currentForecast } = useContext(WeatherContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,9 +75,6 @@ function LeftSideForecast() {
     })
   );
 
-
-
-
   return (
     <div className={styles.leftside_wrapper}>
       <div className={styles.choosen_wrapper}>
@@ -87,7 +84,7 @@ function LeftSideForecast() {
       <div className={styles.top_title_block}>
         <h3 className={styles.top_title}>{data.city.name}</h3>
         <div className={styles.current_weather_block}>
-          <img src={`${data.weather_icon}.png`} alt="weacther" />
+          <img src={`${icons.find((icon) => icon?.name == currentForecast?.weather_icon)}.png`} alt="weacther" />
           <p>{`зараз ${currentTime}`}</p>
         </div>
       </div>
@@ -111,10 +108,10 @@ function LeftSideForecast() {
         <div className={styles.ten_main_block}>
           {weatherData.map((card) => (
             <WeatherCard
-              key={card.id}
-              day={card.day}
-              icon={card.icon}
-              temp={Math.round(card.temperture)+'°C'}
+              key={card?.id}
+              day={card?.day}
+              icon={card?.icon}
+              temp={Math.round(card?.temperture)+'°C'}
             />
           ))}
         </div>

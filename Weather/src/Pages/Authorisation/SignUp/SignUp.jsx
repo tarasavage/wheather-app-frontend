@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import '../Authorisation.css';
+const base_url = `https://weather-app-backend-tahn.onrender.com`;
+import axios from 'axios';
 
 function SignUp() {
   const [name, setName] = useState('');
@@ -14,14 +16,12 @@ function SignUp() {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    // Check for errors
+  const validateForm = () => {
     const newErrors = {};
     const regex = /^(\+\d{1,3}\s?)?\d{8,14}$|^[\w.-]+@[\w.-]+\.[A-Za-z]{2,}$/;
     if (!regex.test(emailOrPhone)) {
-      newErrors.emailOrPhone = 'Invalid email or phone number';
+      newErrors.emailOrPhone = 'Invalid email';
     }
 
     if (!name) {
@@ -38,10 +38,42 @@ function SignUp() {
     }
 
     if (Object.keys(newErrors).length === 0) {
-      console.log('Form submitted');
+      console.log('data are correct');
     } else {
       setErrors(newErrors);
     }
+    return newErrors
+  };
+  
+  const handleSubmit = async (e) => {
+    console.log(!validateForm())
+    e.preventDefault();
+    const register = {
+      email: emailOrPhone,
+      first_name: name,
+      last_name: surname,
+      password,
+      password2: confirmPassword,
+      notification: isChecked,
+    };
+    // Check for errors
+if (validateForm()){
+      try {
+        const response = await axios.post(
+          base_url + '/api/user/register/',
+          register,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log('success', response.status);
+        // localStorage.setItem('responseData', JSON.stringify(response.data.jwt));
+      } catch (error) {
+        console.log(error);
+      }
+  }
   };
 
   const divStyle = {
@@ -92,9 +124,9 @@ function SignUp() {
         <div>
           <input
             className='full-field'
-            type='text'
+            type='email'
             value={emailOrPhone}
-            placeholder='Email або номер телефону'
+            placeholder='Email'
             onChange={(e) => setEmailOrPhone(e.target.value)}
           />
         </div>

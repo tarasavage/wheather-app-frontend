@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./MainContent.module.scss";
 
 import CurrentForecast from "./components/CurrentForecast/CurrentForecast";
@@ -9,73 +9,17 @@ import wind from "../../icons/wind.svg";
 import rain from "../../icons/rain.svg";
 import wet from "../../icons/wet.svg";
 import pressure from "../../icons/pressure.svg";
+import pressureIcon from '../../icons/pressure.png'
 
 import sunrise from "../../icons/sunrise.svg";
 import sunset from "../../icons/sunset.svg";
+
+import { WeatherContext } from "../../../../../../context";
 import { convertTime } from "../../Helpers/time.helper";
-import { fetchData } from "../../Helpers/fetchingData.helper";
-
-const data = {
-  id: 1,
-  city: {
-    id: 1,
-    name: "Львів",
-    lat: 40.7128,
-    lon: -74.006,
-    country: "US",
-  },
-"dt": "2023-05-22 09:00:00",
-"pressure": 1019.0,
-"humidity": 38.0,
-"clouds": 9.0,
-"wind_speed": 4.79,
-"wind_gust": 8.45,
-"wind_deg": 38.0,
-"weather_id": 800,
-"weather_main": "Clear",
-"weather-description": "4CTe He60",
-"weather icon": "01d",
-"Sunrise": "2023-05-22T02:01:55z",
-"sunset": "2023-05-22T17:47:26Z",
-"temp_min": 9.61,
-"temp_max": 19.93,
-"temp_morn": 9.92,
-"temp_day": 19.33,
-"temp_eve": 18.39,
-"temp_night": 15.53,
-"feels_like_morn": 8.45,
-"feels_like_day": 18.31,
-"feels_like_eve": 17.51,
-"feels_like_night": 14.76,
-"visibility": 3000,
-"pop": 0.0,
-"rain" : null,
-"snow": null,
-// "city": 2
-};
-
 
 function MainContent() {
-
-  const [response, setResponse] = useState([]);
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const nextDay = new Date();
-      nextDay.setDate(nextDay.getDate() + 1);
-
-      if (currentDate > nextDay) {
-        console.log('Виконується запит...');
-        setResponse(fetchData('daily', 'Lviv'))
-      }
-
-      setCurrentDate(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [currentDate]);
-
+  
+  const {currentForecast, dailyForecast} = useContext(WeatherContext);
 
   return (
     <div className={styles.main_content__wrapper}>
@@ -90,10 +34,12 @@ function MainContent() {
             присутністю до самого вечора. Без опадів.
           </div>
           <div className={styles.infoblock__wrapper}>
-            <InfoBlock title={"Вітер"} data={`${data.wind_speed} м/с`} icon={wind} />
-            <InfoBlock title={"Опади"} data={`${data.city} мм`} icon={rain} />
-            <InfoBlock title={"Видимість"} data={`${data.visibility} м`} icon={visibility} />
-            <InfoBlock title={"Вологість"} data={`${data.humidity} %`} icon={wet} />
+
+          <InfoBlock title={"Вітер"} data={`${dailyForecast ? dailyForecast[0].wind_speed : ''} м/с`} icon={wind} />
+            <InfoBlock title={"Опади"} data={`${dailyForecast ? dailyForecast[0].city : ''} мм`} icon={rain} />
+            <InfoBlock title={"Видимість"} data={`${currentForecast?.visibility} м`} icon={visibility} />
+            <InfoBlock title={"Вологість"} data={`${dailyForecast ? dailyForecast[0].humidity : ''} %`} icon={wet} />
+
           </div>
         </div>
         <div className={styles.sideBlocks_wrapper}>
@@ -104,7 +50,7 @@ function MainContent() {
                 <p>Схід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-                <p>{convertTime(data.Sunrise)}</p>
+                <p>{dailyForecast && convertTime(dailyForecast[0].sunrise)}</p>
               </div>
             </div>
             <div>
@@ -113,7 +59,7 @@ function MainContent() {
                 <p>Захід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-                <p>{convertTime(data.sunset)}</p>
+              <p>{dailyForecast && convertTime(dailyForecast[0].sunset)}</p>
               </div>
             </div>
           </div>
@@ -123,7 +69,8 @@ function MainContent() {
               <p>Тиск</p>
             </div>
             <div className={styles.content_wrap}>
-              <p>{data.pressure} гПа</p>
+              <p>{`${dailyForecast ? dailyForecast[0].pressure : ''} гПа`}</p>
+              <div className={styles.wrap_img}><img src={pressureIcon} alt="pressure" /></div>
             </div>
           </div>
         </div>

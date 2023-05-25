@@ -77,6 +77,23 @@
 .sun_content_wrap{
      height: 80px;
      display: flex;
-     align-items: center;
      justify-content: center;
+     align-items: center;
+     p {
+          font-size: 23px;
+     }
+}
+.content_wrap{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     font-size: 23px;
+     padding-top: 15px;
+}
+.wrap_img{
+     img{
+          width: 100px;
+          height: 100px;
+     }
 }
