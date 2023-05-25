@@ -11,6 +11,7 @@ import { translateDay } from "../../Helpers/leftForecast.helper";
 import { WeatherContext } from "../../../../../../context";
 import { icons } from "../../../../../../../public/svg/icons";
 
+
 import { getDayFromDate } from "../../../../../../features/getDay";
 
 const data = {
@@ -84,7 +85,7 @@ function LeftSideForecast() {
       <div className={styles.top_title_block}>
         <h3 className={styles.top_title}>{data.city.name}</h3>
         <div className={styles.current_weather_block}>
-          <img src={`${icons.find((icon) => icon?.name == currentForecast?.weather_icon)}.png`} alt="weacther" />
+          <img  src={icons.find((icon) => icon?.name == data?.weather_icon)?.url} alt="weacther" />
           <p>{`зараз ${currentTime}`}</p>
         </div>
       </div>
