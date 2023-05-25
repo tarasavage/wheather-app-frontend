@@ -11,6 +11,7 @@ import { translateDay } from "../../Helpers/leftForecast.helper";
 import { WeatherContext } from "../../../../../../context";
 import { icons } from "../../../../../../../public/svg/icons";
 
+
 import { getDayFromDate } from "../../../../../../features/getDay";
 
 const data = {
@@ -32,7 +33,7 @@ const data = {
   weather_id: 500,
   weather_main: "Rain",
   weather_description: "light rain",
-  weather_icon: currentweather,
+  weather_icon: '01d',
   temp: 15.5,
   feels_like: 14.2,
   visibility: 3000.0,
@@ -43,7 +44,7 @@ const data = {
 function LeftSideForecast() {
   const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
-  const { dailyForecast } = useContext(WeatherContext);
+  const { dailyForecast, currentForecast } = useContext(WeatherContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,9 +76,6 @@ function LeftSideForecast() {
     })
   );
 
-
-  
-
   return (
     <div className={styles.leftside_wrapper}>
       <div className={styles.choosen_wrapper}>
@@ -87,18 +85,19 @@ function LeftSideForecast() {
       <div className={styles.top_title_block}>
         <h3 className={styles.top_title}>{data.city.name}</h3>
         <div className={styles.current_weather_block}>
-          <img src={data.weather_icon} alt="weacther" />
+          <img  src={icons.find((icon) => icon?.name == data?.weather_icon)?.url} alt="weacther" />
           <p>{`зараз ${currentTime}`}</p>
         </div>
       </div>
 
       <div className={styles.wrapper}>
         <div className={styles.title_wrap}>
-          <p>{data.temp}</p>
+          <p>{`${data.temp}°C`}</p>
         </div>
         <div className={styles.content_wrap}>
-          <p>Відчувається як {data.temp + 1}</p>
-          <p>Без опадів</p>
+          <p>Відчувається як {data.feels_like}°C</p>
+          <p>{data.rain_1h ? 'Можливі опади' : 'Без опадів'}</p>
+          <p>{data.snow_1h ? 'Можливий сніг' : 'Без снігу'}</p>
         </div>
       </div>
 
@@ -110,10 +109,10 @@ function LeftSideForecast() {
         <div className={styles.ten_main_block}>
           {weatherData.map((card) => (
             <WeatherCard
-              key={card.id}
-              day={card.day}
-              icon={card.icon}
-              temp={Math.round(card.temperture)+'°C'}
+              key={card?.id}
+              day={card?.day}
+              icon={card?.icon}
+              temp={Math.round(card?.temperture)+'°C'}
             />
           ))}
         </div>
