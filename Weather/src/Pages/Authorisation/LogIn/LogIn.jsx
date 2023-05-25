@@ -26,6 +26,7 @@ function LogIn() {
     } else {
       setErrors(newErrors);
     }
+    return newErrors
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +38,7 @@ function LogIn() {
     if (validateForm()) {
       try {
         const response = await axios.post(
-          base_url + '/api/user/token/login/',
+          base_url + '/api/user/token/',
           register,
           {
             headers: {
