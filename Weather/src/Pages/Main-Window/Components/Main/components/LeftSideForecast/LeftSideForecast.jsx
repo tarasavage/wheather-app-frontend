@@ -24,7 +24,7 @@ function LeftSideForecast() {
   useEffect( () => {
     fetchData('current', city).then(data => setCurrentData(data))
     fetchData('daily', city).then(data => setDailyData(data))
-  }, []);
+  }, [city]);
 
   const weatherData = [];
 
