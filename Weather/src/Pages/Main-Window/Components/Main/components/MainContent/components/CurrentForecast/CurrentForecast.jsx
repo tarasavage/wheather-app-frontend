@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./CurrentForecast.module.scss";
 
 import HourlyForecast from "../HourlyForecast/HourlyForecast";
@@ -9,11 +9,18 @@ import clock from "../../../../icons/clock.svg";
 import cloudy from "../../../../../../../../icons/cloudy.svg";
 import { WeatherContext } from "../../../../../../../../context";
 import { icons } from "../../../../../../../../../public/svg/icons";
+import { useParams } from "react-router-dom";
+import { fetchData } from "../../../../Helpers/fetchingData.helper";
 
 function CurrentForecast() {
-  const { hourlyForecast } = useContext(WeatherContext);
+  const {city} = useParams();
 
-  console.log(hourlyForecast);
+  // const { hourlyForecast } = useContext(WeatherContext);
+  const [hourlyForecast, setHourlyForecast] = useState([]);
+
+  useEffect(() => {
+    fetchData('hourly', city).then(data => setHourlyForecast(data));
+  }, [city])
 
   return (
     <div className={styles.wrapper}>

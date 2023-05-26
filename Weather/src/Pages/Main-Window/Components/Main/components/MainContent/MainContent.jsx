@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./MainContent.module.scss";
+import { useParams } from "react-router-dom";
 
 import CurrentForecast from "./components/CurrentForecast/CurrentForecast";
 import InfoBlock from "../../ui/InfoBlock/InfoBlock";
@@ -16,10 +17,29 @@ import sunset from "../../icons/sunset.svg";
 
 import { WeatherContext } from "../../../../../../context";
 import { convertTime } from "../../Helpers/time.helper";
+import { fetchData } from "../../Helpers/fetchingData.helper";
 
 function MainContent() {
-  
+  const { city = "Львів" } = useParams();
+
   const {currentForecast, dailyForecast} = useContext(WeatherContext);
+
+  if(currentForecast) console.log(currentForecast);
+  if(dailyForecast) console.log(dailyForecast);
+
+
+  const [currentData, setCurrentData] = useState({});
+  const [dailyData, setDailyData] = useState([]);
+
+  useEffect(() => {
+    fetchData('current', city).then(data => setCurrentData(data));
+    fetchData('daily', city).then(data => setDailyData(data));
+  }, [city])
+
+
+  if(currentData) console.log(currentData);
+  if(dailyData) console.log(dailyData);
+
 
   return (
     <div className={styles.main_content__wrapper}>
@@ -35,10 +55,10 @@ function MainContent() {
           </div>
           <div className={styles.infoblock__wrapper}>
 
-          <InfoBlock title={"Вітер"} data={`${dailyForecast ? dailyForecast[0].wind_speed : ''} м/с`} icon={wind} />
-            <InfoBlock title={"Опади"} data={`${dailyForecast ? dailyForecast[0].city : ''} мм`} icon={rain} />
-            <InfoBlock title={"Видимість"} data={`${currentForecast?.visibility} м`} icon={visibility} />
-            <InfoBlock title={"Вологість"} data={`${dailyForecast ? dailyForecast[0].humidity : ''} %`} icon={wet} />
+          <InfoBlock title={"Вітер"} data={`${dailyData ? dailyData[0]?.wind_speed : ''} м/с`} icon={wind} />
+            <InfoBlock title={"Опади"} data={`${dailyData ? dailyData[0]?.city : ''} мм`} icon={rain} />
+            <InfoBlock title={"Видимість"} data={`${currentData?.visibility} м`} icon={visibility} />
+            <InfoBlock title={"Вологість"} data={`${dailyData ? dailyData[0]?.humidity : ''} %`} icon={wet} />
 
           </div>
         </div>
@@ -50,7 +70,7 @@ function MainContent() {
                 <p>Схід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-                <p>{dailyForecast && convertTime(dailyForecast[0].sunrise)}</p>
+                <p>{dailyData[0]?.sunrise?.slice(11, 16)}</p>
               </div>
             </div>
             <div>
@@ -59,7 +79,7 @@ function MainContent() {
                 <p>Захід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-              <p>{dailyForecast && convertTime(dailyForecast[0].sunset)}</p>
+              <p>{dailyData[0]?.sunset?.slice(11, 16)}</p>
               </div>
             </div>
           </div>
