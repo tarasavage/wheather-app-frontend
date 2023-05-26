@@ -1,18 +1,18 @@
 export const translateDay = (day) => {
      switch(day) {
-          case 'Monday':
+          case 'Mon':
                return 'Пн'
-          case 'Tuesday':
+          case 'Tue':
                return 'Вт'
-          case 'Wensday':
+          case 'Wed':
                return 'Ср'
-          case 'Thursday':
+          case 'Thu':
                return 'Чт'
-          case 'Friday':
+          case 'Fri':
                return 'Пт'
-          case 'Saturday':
+          case 'Sat':
                return 'Сб'
-          case 'Sunday':
+          case 'Sun':
                return 'Нд'
      }
 }
