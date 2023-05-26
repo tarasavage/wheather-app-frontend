@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./LeftSideForecast.module.scss";
-import { format } from "date-fns";
-import axios from 'axios'
 
-import currentweather from "../../../../../../icons/cloudyWithSun.svg";
 import calendar from "../../../../../../icons/calendar.svg";
 import star from "../../../../../../icons/choosen_star.png";
 
@@ -11,34 +8,31 @@ import WeatherCard from "../../ui/WeatherCard/WeatherCard";
 import { translateDay } from "../../Helpers/leftForecast.helper";
 import { WeatherContext } from "../../../../../../context";
 import { icons } from "../../../../../../../public/svg/icons";
-import { convertTime } from "../../Helpers/time.helper";
 import { fetchData } from "../../Helpers/fetchingData.helper";
 
 import { getDayFromDate } from "../../../../../../features/getDay";
 import { useParams } from "react-router-dom";
 
-import { base_url } from "../../../../../../weather-service/useWeatherFetch";
-
 function LeftSideForecast() {
   const { city = "Львів" } = useParams();
   console.log(city);
 
-  const { dailyForecast, currentForecast } = useContext(WeatherContext);
+  // const { dailyForecast, currentForecast } = useContext(WeatherContext);
   const [currentData, setCurrentData] = useState({});
-
-  const weatherData = [];
+  const [dailyData, setDailyData] = useState([]);
 
   useEffect( () => {
     fetchData('current', city).then(data => setCurrentData(data))
+    fetchData('daily', city).then(data => setDailyData(data))
   }, []);
 
-  if (currentData) console.log(currentData);
+  const weatherData = [];
 
-  dailyForecast?.map((day) =>
+  dailyData?.map((day) =>
     weatherData.push({
       id: day?.id,
       temperture: day?.temp_day,
-      day: getDayFromDate(day?.dt),
+      day: translateDay(getDayFromDate(day?.dt)),
       icon: icons.find((icon) => icon?.name == day?.weather_icon)?.url,
     })
   );
