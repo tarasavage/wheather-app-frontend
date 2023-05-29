@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
+import BasicSelect from "../Select/Select";
 
 const Header = () => {
   const [location, setLocation] = useState("");
@@ -11,6 +12,8 @@ const Header = () => {
 
   let date = new Date();
 
+  
+
 
   return (
     <div className={styles.header}>
@@ -20,7 +23,7 @@ const Header = () => {
         value={location}
         onChange={onLocationInput}
       />
-
+<BasicSelect/>
       
 
     <div className={styles.flex_container}>
