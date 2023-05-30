@@ -11,15 +11,23 @@ import { icons } from "../../../../../../../public/svg/icons";
 import { fetchData } from "../../Helpers/fetchingData.helper";
 
 import { getDayFromDate } from "../../../../../../features/getDay";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getCurrentDay } from "../../Helpers/time.helper";
 
 function LeftSideForecast() {
-  const { city = "Львів" } = useParams();
+
+  // const { city = "Львів", date = getCurrentDay() } = useParams();
+  const {city = "Львів", date = getCurrentDay()} = useParams()
   console.log(city);
+  console.log(date)
 
   // const { dailyForecast, currentForecast } = useContext(WeatherContext);
   const [currentData, setCurrentData] = useState({});
   const [dailyData, setDailyData] = useState([]);
+  const [activeDay, setActiveDay] = useState({
+    day: date,
+    id: 1
+  })
 
   useEffect( () => {
     fetchData('current', city).then(data => setCurrentData(data))
@@ -34,8 +42,11 @@ function LeftSideForecast() {
       temperture: day?.temp_day,
       day: translateDay(getDayFromDate(day?.dt)),
       icon: icons.find((icon) => icon?.name == day?.weather_icon)?.url,
+      date: day?.dt.slice(0, 10)
     })
   );
+
+  if(weatherData) console.log(weatherData);
 
   return (
     <div className={styles.leftside_wrapper}>
@@ -75,12 +86,15 @@ function LeftSideForecast() {
         </div>
         <div className={styles.ten_main_block}>
           {weatherData.map((card) => (
+            <Link to={`/weather/${city}/${card?.date}`}>
             <WeatherCard
               key={card?.id}
               day={card?.day}
               icon={card?.icon}
+              active={card?.date === date}
               temp={Math.round(card?.temperture) + "°C"}
             />
+            </Link>
           ))}
         </div>
       </div>

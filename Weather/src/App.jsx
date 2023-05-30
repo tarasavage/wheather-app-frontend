@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
-          <Route path='/weather/:city' element={<MainWindow/>} />
+          <Route path='/weather/:city/:date?' element={<MainWindow/>} />
         </Routes>
       </BrowserRouter>
       </WeatherContext.Provider>

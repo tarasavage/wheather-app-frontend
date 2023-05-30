@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./WeatherCard.module.scss";
 
-const WeatherCard = ({ day, icon, temp }) => {
+const WeatherCard = ({ day, icon, temp, active }) => {
+  console.log(active)
   return (
-    <div className={styles.weathercard_wrapper}>
+    <div className={`${styles.weathercard_wrapper} ${active ? styles.active : ""}`}>
       <div className={styles.weathercard_day}>
         <p>{day}</p>
       </div>
