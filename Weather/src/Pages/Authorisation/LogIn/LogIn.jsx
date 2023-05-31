@@ -46,8 +46,11 @@ function LogIn() {
             },
           }
         );
-        console.log('success', response.status);
-        // localStorage.setItem('responseData', JSON.stringify(response.data.jwt));
+        console.log('success', response);
+        sessionStorage.setItem('token', response.data.access);
+        if (response.status=='200')
+        {window.location.href=`http://127.0.0.1:5173/weather/Lviv`}
+
       } catch (error) {
         console.log(error);
       }
@@ -103,9 +106,6 @@ function LogIn() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <p className='register-label'>
-          <Link to='/'>Досі не маєте аккаунту? Хутчіш реєструйтеся!</Link>
-        </p>
         <div
           style={{
             marginLeft: '340px',
@@ -115,6 +115,10 @@ function LogIn() {
             Увійти
           </button>
         </div>
+        <p className='register-label'>
+          <Link to='/'>Досі не маєте аккаунту? Хутчіш реєструйтеся!</Link>
+        </p>
+        
       </form>
     </div>
   );

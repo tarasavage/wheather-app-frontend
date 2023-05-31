@@ -1,7 +1,7 @@
 export const base_url = `https://weather-app-backend-tahn.onrender.com`;
 
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const useWeatherFetch = () => {
   const [currentForecast, setCurrentForecast] = useState();
@@ -12,34 +12,34 @@ export const useWeatherFetch = () => {
 
   const getCurrentForecast = async () => {
     try {
-      const response = await axios(base_url + '/api/forecast/current/');
+      const response = await axios(base_url + "/api/forecast/current/");
       setCurrentForecast(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      console.log('final');
+      console.log("final");
     }
   };
 
   const getDailyForecast = async () => {
     try {
-      const response = await axios(base_url + '/api/forecast/daily/');
+      const response = await axios(base_url + "/api/forecast/daily/");
       setDailyForecast(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      console.log('final');
+      console.log("final");
     }
   };
 
   const getHourlyForecast = async () => {
     try {
-      const response = await axios(base_url + '/api/forecast/hourly/');
+      const response = await axios(base_url + "/api/forecast/hourly/");
       setHourlyForecast(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      console.log('final');
+      console.log("final");
     }
   };
 

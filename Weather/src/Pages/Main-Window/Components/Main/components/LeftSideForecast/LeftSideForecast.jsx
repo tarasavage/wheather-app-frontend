@@ -27,6 +27,7 @@ function LeftSideForecast() {
   }, [city]);
 
   const weatherData = [];
+  console.log(dailyData)
 
   dailyData?.map((day) =>
     weatherData.push({
@@ -40,8 +41,10 @@ function LeftSideForecast() {
   return (
     <div className={styles.leftside_wrapper}>
       <div className={styles.choosen_wrapper}>
-        <img src={star} alt="star" />
-        <p>У вибраному</p>
+        {/* <img src={star} alt="star" /> 
+         <p>У вибраному</p> */}
+        <button className={styles.select}>Додати місто у Вибране</button>
+       
       </div>
       <div className={styles.top_title_block}>
         <h3 className={styles.top_title}>{city}</h3>

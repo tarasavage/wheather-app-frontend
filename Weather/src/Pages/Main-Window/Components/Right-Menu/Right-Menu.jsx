@@ -25,14 +25,16 @@ const RightMenu = () => {
           "Увесь день у Львові спостерігалося ясне небо, й хмари не засмутили його своєю присутністю до самого вечора. Без опадів",
       }
   ];
+
+  const token = sessionStorage.getItem('token');
   
   return (
     <div className={styles.right_menu}>
       <button className={styles.countries_button}>Вибрані міста</button>
 
-     {data?.map((info)=>
+     {token?data?.map((info)=>
      (  <LocationWidgetComponent data={info} />)
-     )}
+     ):<>Для додавання вибраних міст авторизуйтесь.</>}
       
       
     </div>
