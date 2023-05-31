@@ -17,7 +17,7 @@ import { getCurrentDay } from "../../Helpers/time.helper";
 function LeftSideForecast() {
 
   // const { city = "Львів", date = getCurrentDay() } = useParams();
-  const {city = "Львів", date = getCurrentDay()} = useParams()
+  const {city = "Львів", date = '2023-05-25'} = useParams() // in result should be date = getCurrentDay()
   console.log(city);
   console.log(date)
 
@@ -47,6 +47,11 @@ function LeftSideForecast() {
   );
 
   if(weatherData) console.log(weatherData);
+  if(currentData?.dt?.slice(0,10) !== date){
+    const selectedDay = weatherData.find(day => day.date === date);
+    console.log(selectedDay)
+    setCurrentData(selectedDay)
+  }
 
   return (
     <div className={styles.leftside_wrapper}>
