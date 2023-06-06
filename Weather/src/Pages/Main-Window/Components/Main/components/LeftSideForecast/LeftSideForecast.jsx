@@ -27,7 +27,7 @@ function LeftSideForecast() {
   }, [city]);
 
   const weatherData = [];
-  console.log(dailyData)
+  dailyData.slice(0,6);
 
   dailyData?.map((day) =>
     weatherData.push({
@@ -37,6 +37,9 @@ function LeftSideForecast() {
       icon: icons.find((icon) => icon?.name == day?.weather_icon)?.url,
     })
   );
+
+  const weatherArray = weatherData.slice(0,7);
+  
 
   return (
     <div className={styles.leftside_wrapper}>
@@ -77,7 +80,7 @@ function LeftSideForecast() {
           <p>7-денний прогноз</p>
         </div>
         <div className={styles.ten_main_block}>
-          {weatherData.map((card) => (
+          {weatherArray.map((card) => (
             <WeatherCard
               key={card?.id}
               day={card?.day}

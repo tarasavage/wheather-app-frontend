@@ -13,7 +13,8 @@
   border-radius: 30px;
   margin: 0 auto;
   opacity: 0.75;
-  padding: 17px 0 26px 91px;
+  padding: 17px 0px 26px 91px;
+  margin-top: 40px;
 }
 .SignUpTitle {
   background: #ffffff;

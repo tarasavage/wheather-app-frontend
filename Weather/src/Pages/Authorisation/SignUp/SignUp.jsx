@@ -88,7 +88,7 @@ if (validateForm()){
 
   return (
     <div style={divStyle}>
-      <div className='logo'>ЛОГО</div>
+     
       <form onSubmit={handleSubmit} className='SignUpForm'>
         <div className='SignUpTitle'>Реєстрація</div>
         <div>

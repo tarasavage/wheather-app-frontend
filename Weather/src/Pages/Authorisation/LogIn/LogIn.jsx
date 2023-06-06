@@ -69,8 +69,8 @@ function LogIn() {
 
   return (
     <div style={divStyle}>
-      <div></div>
-      <div className='logo'>ЛОГО</div>
+      
+      
       <form onSubmit={handleSubmit} className='SignUpForm'>
         <div className='SignUpTitle'>Увійти</div>
 
