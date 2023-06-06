@@ -93,6 +93,12 @@
   border: none;
 }
 .profile_button:hover {
-  cursor: pointer;
   background-color: #ffffff;
+}
+
+.label {
+  cursor: pointer;
+}
+.label:hover {
+  color: blue;
 }

@@ -1,5 +1,6 @@
 .weathercard_wrapper {
   display: flex;
+  cursor: pointer;
   align-items: center;
   width: 100%;
   border-top: 2px solid #ffffff;
@@ -16,8 +17,8 @@
   flex: 4;
   justify-content: space-between;
   padding: 5px 12px;
-     img{
-          margin-left: 11px;
-          padding-top: 5px;
-     }
+  img {
+    margin-left: 11px;
+    padding-top: 5px;
+  }
 }

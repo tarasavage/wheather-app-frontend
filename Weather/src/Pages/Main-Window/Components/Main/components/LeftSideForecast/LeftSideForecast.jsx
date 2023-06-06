@@ -27,6 +27,7 @@ function LeftSideForecast() {
   }, [city]);
 
   const weatherData = [];
+  dailyData.slice(0,6);
 
   dailyData?.map((day) =>
     weatherData.push({
@@ -37,11 +38,16 @@ function LeftSideForecast() {
     })
   );
 
+  const weatherArray = weatherData.slice(0,7);
+  
+
   return (
     <div className={styles.leftside_wrapper}>
       <div className={styles.choosen_wrapper}>
-        <img src={star} alt="star" />
-        <p>У вибраному</p>
+        {/* <img src={star} alt="star" /> 
+         <p>У вибраному</p> */}
+        <button className={styles.select}>Додати місто у Вибране</button>
+       
       </div>
       <div className={styles.top_title_block}>
         <h3 className={styles.top_title}>{city}</h3>
@@ -74,7 +80,7 @@ function LeftSideForecast() {
           <p>7-денний прогноз</p>
         </div>
         <div className={styles.ten_main_block}>
-          {weatherData.map((card) => (
+          {weatherArray.map((card) => (
             <WeatherCard
               key={card?.id}
               day={card?.day}

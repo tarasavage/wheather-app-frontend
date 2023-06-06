@@ -24,21 +24,17 @@ function MainContent() {
 
   const {currentForecast, dailyForecast} = useContext(WeatherContext);
 
-  if(currentForecast) console.log(currentForecast);
-  if(dailyForecast) console.log(dailyForecast);
 
 
   const [currentData, setCurrentData] = useState({});
   const [dailyData, setDailyData] = useState([]);
 
-  useEffect(() => {
-    fetchData('current', city).then(data => setCurrentData(data));
-    fetchData('daily', city).then(data => setDailyData(data));
-  }, [city])
+  // useEffect(() => {
+  //   fetchData('current', city).then(data => setCurrentData(data));
+  //   fetchData('daily', city).then(data => setDailyData(data));
+  // }, [city])
 
 
-  if(currentData) console.log(currentData);
-  if(dailyData) console.log(dailyData);
 
 
   return (
@@ -55,10 +51,10 @@ function MainContent() {
           </div>
           <div className={styles.infoblock__wrapper}>
 
-          <InfoBlock title={"Вітер"} data={`${dailyData ? dailyData[0]?.wind_speed : ''} м/с`} icon={wind} />
-            <InfoBlock title={"Опади"} data={`${dailyData ? dailyData[0]?.city : ''} мм`} icon={rain} />
-            <InfoBlock title={"Видимість"} data={`${currentData?.visibility} м`} icon={visibility} />
-            <InfoBlock title={"Вологість"} data={`${dailyData ? dailyData[0]?.humidity : ''} %`} icon={wet} />
+          <InfoBlock title={"Вітер"} data={`${currentForecast?.wind_speed} м/с`} icon={wind} />
+            <InfoBlock title={"Опади"} data={`${'10'} мм`} icon={rain} />
+            <InfoBlock title={"Видимість"} data={`${currentForecast?.visibility} м`} icon={visibility} />
+            <InfoBlock title={"Вологість"} data={`${currentForecast?.humidity} %`} icon={wet} />
 
           </div>
         </div>
@@ -70,7 +66,7 @@ function MainContent() {
                 <p>Схід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-                <p>{dailyData[0]?.sunrise?.slice(11, 16)}</p>
+                <p>{dailyForecast?.[0]?.sunrise?.slice(11, 16)}</p>
               </div>
             </div>
             <div>
@@ -79,7 +75,7 @@ function MainContent() {
                 <p>Захід Сонця</p>
               </div>
               <div className={styles.sun_content_wrap}>
-              <p>{dailyData[0]?.sunset?.slice(11, 16)}</p>
+              <p>{dailyForecast?.[0]?.sunset?.slice(11, 16)}</p>
               </div>
             </div>
           </div>
@@ -89,7 +85,7 @@ function MainContent() {
               <p>Тиск</p>
             </div>
             <div className={styles.content_wrap}>
-              <p>{`${dailyForecast ? dailyForecast[0].pressure : ''} гПа`}</p>
+              <p>{`${dailyForecast?.[0].pressure} гПа`}</p>
               <div className={styles.wrap_img}><img src={pressureIcon} alt="pressure" /></div>
             </div>
           </div>
