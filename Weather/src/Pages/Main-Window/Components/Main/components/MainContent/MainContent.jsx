@@ -52,7 +52,7 @@ function MainContent() {
           <div className={styles.infoblock__wrapper}>
 
           <InfoBlock title={"Вітер"} data={`${currentForecast?.wind_speed} м/с`} icon={wind} />
-            <InfoBlock title={"Опади"} data={`${currentForecast?.city} мм`} icon={rain} />
+            <InfoBlock title={"Опади"} data={`${'10'} мм`} icon={rain} />
             <InfoBlock title={"Видимість"} data={`${currentForecast?.visibility} м`} icon={visibility} />
             <InfoBlock title={"Вологість"} data={`${currentForecast?.humidity} %`} icon={wet} />
 

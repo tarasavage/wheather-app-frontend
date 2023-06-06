@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import '../Authorisation.css';
-const base_url = `https://weather-app-backend-tahn.onrender.com`;
+const base_url = `https://weather-app-backend-81ud.onrender.com`;
 import axios from 'axios';
 
 function SignUp() {

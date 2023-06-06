@@ -27,7 +27,7 @@ export default function BasicSelect() {
           onChange={handleChange}
         >
           <MenuItem value={'Kyiv'}>Київ</MenuItem>
-          <MenuItem value={'Kharkiv'}>Харків</MenuItem>
+          <MenuItem value={'Харків'}>Харків</MenuItem>
           <MenuItem value={'Odesa'}>Одеса</MenuItem>
           <MenuItem value={'Dnipro'}>Дніпро</MenuItem>
           <MenuItem value={'Donetsk'}>Донецьк</MenuItem>
