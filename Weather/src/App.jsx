@@ -7,20 +7,21 @@ import { useState } from 'react';
 import { useWeatherFetch } from './weather-service/useWeatherFetch';
 
 function App() {
-
-  const {currentForecast, dailyForecast, hourlyForecast} = useWeatherFetch();
+  const { currentForecast, dailyForecast, hourlyForecast } = useWeatherFetch();
 
   return (
-    <WeatherContext.Provider value={{currentForecast,dailyForecast, hourlyForecast}}>
+    <WeatherContext.Provider
+      value={{ currentForecast, dailyForecast, hourlyForecast }}
+    >
       <BrowserRouter>
         <Routes>
         <Route path='/:city' element={<MainWindow/>} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
-         
+    
         </Routes>
       </BrowserRouter>
-      </WeatherContext.Provider>
+    </WeatherContext.Provider>
   );
 }
 
