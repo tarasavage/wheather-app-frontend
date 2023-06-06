@@ -1,10 +1,10 @@
-import { useState } from "react";
-import styles from "./styles.module.scss";
-import BasicSelect from "../../../../Components/Select/Select";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import styles from './styles.module.scss';
+import BasicSelect from '../../../../Components/Select/Select';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState('');
 
   const onLocationInput = ({ target: { value } }) => {
     setLocation(value);
@@ -12,7 +12,7 @@ const Header = () => {
 
   let date = new Date();
 
-  const token = sessionStorage.getItem("token");
+  const token = sessionStorage.getItem('token');
 
   return (
     <div className={styles.header}>
@@ -26,11 +26,11 @@ const Header = () => {
         <></>
       ) : (
         <button className={styles.profile_button}>
-          <Link to="/login">
+          <Link to='/login'>
             <span className={styles.label}>Увійти</span>
           </Link>
-          <Link to="/">
-            {" "}
+          <Link to='/registration'>
+            {' '}
             <span className={styles.label}>Зареєструватись</span>
           </Link>
         </button>

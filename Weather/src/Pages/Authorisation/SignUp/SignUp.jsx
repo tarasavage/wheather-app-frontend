@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../Authorisation.css';
 const base_url = `https://weather-app-backend-81ud.onrender.com`;
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 function SignUp() {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -42,11 +42,11 @@ function SignUp() {
     } else {
       setErrors(newErrors);
     }
-    return newErrors
+    return newErrors;
   };
-  
+
   const handleSubmit = async (e) => {
-    console.log(!validateForm())
+    console.log(!validateForm());
     e.preventDefault();
     const register = {
       email: emailOrPhone,
@@ -57,7 +57,7 @@ function SignUp() {
       notification: isChecked,
     };
     // Check for errors
-if (validateForm()){
+    if (validateForm()) {
       try {
         const response = await axios.post(
           base_url + '/api/user/register/',
@@ -73,7 +73,7 @@ if (validateForm()){
       } catch (error) {
         console.log(error);
       }
-  }
+    }
   };
 
   const divStyle = {
@@ -88,7 +88,6 @@ if (validateForm()){
 
   return (
     <div style={divStyle}>
-     
       <form onSubmit={handleSubmit} className='SignUpForm'>
         <div className='SignUpTitle'>Реєстрація</div>
         <div>
@@ -179,7 +178,7 @@ if (validateForm()){
           }}
         >
           <button type='submit' className='submit-btn'>
-            Зареєструватись
+            <Link to='/login'> Зареєструватись</Link>
           </button>
         </div>
       </form>
