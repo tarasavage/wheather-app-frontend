@@ -14,9 +14,10 @@ function App() {
     <WeatherContext.Provider value={{currentForecast,dailyForecast, hourlyForecast}}>
       <BrowserRouter>
         <Routes>
-        <Route path='/:city' element={<MainWindow/>} />
-          <Route path='/signup' element={<SignUp />} />
+       
+          <Route path='/' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
+           <Route path='/weather/:city' element={<MainWindow/>} />
          
         </Routes>
       </BrowserRouter>
