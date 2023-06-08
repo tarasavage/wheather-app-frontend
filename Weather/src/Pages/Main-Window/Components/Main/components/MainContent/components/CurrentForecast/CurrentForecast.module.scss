@@ -1,0 +1,24 @@
+.wrapper{
+     max-width: 671px;
+     height: 45px;
+     display: flex;
+     flex-direction: column;
+     background: #BFC6DD;
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+     border-radius: 20px 20px 0px 0px;
+}
+.title_wrap{
+     display: flex;
+     gap: 4px;
+     margin-left: 15px;
+}
+.hourblock_wrapper {
+     display: flex;
+     gap: 14px;
+     padding: 9px 15px;
+     background-color: rgba(224, 226, 239, 0.3);
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15); 
+     border-radius: 0px 0px 20px 20px;
+     z-index: 1;
+   }
+

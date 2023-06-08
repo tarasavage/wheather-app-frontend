@@ -1,0 +1,104 @@
+.header {
+  height: 150px;
+
+  background: url("../../../../AuthorisationBg.png") no-repeat center center
+    fixed;
+  background-size: cover;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.location {
+  height: 40px;
+  width: 240px;
+  opacity: 0.5;
+  border-radius: 20px;
+
+  outline: none;
+  border: none;
+}
+
+.cards_button {
+  width: 120px;
+  height: 40px;
+  opacity: 0.5;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.cards_button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.vocabulary_button {
+  width: 120px;
+  height: 40px;
+  opacity: 0.5;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.vocabulary_button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.lang_button {
+  width: 80px;
+  height: 40px;
+  opacity: 0.5;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.lang_button:hover {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.flex_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: baseline;
+  padding-top: 40px;
+}
+
+.date {
+  width: 180px;
+  height: 40px;
+  top: 13px;
+  position: relative;
+  opacity: 0.5;
+  border-radius: 20px;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile_button {
+  width: 220px;
+  height: 50px;
+  opacity: 70%;
+  font-weight: 600;
+  margin-left: 100px;
+  font-size: 20px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.profile_button:hover {
+  background-color: #ffffff;
+}
+
+.label {
+  cursor: pointer;
+}
+.label:hover {
+  color: blue;
+}
